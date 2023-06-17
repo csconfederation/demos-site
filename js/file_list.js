@@ -53,7 +53,8 @@ var File = function (path, item, bucketUrl) {
     icon: 'ion-document-text',
     name: name,
     title: name.replace(/^The\s*/i, ''),
-    href: bucketUrl + encodeURIComponent(file).replace(/%2F/g, '/'),
+    //href: bucketUrl + encodeURIComponent(file).replace(/%2F/g, '/'),
+    href: bucketUrl + encodeURIComponent(file).replace(/%2F/g, '/').replace('nyc3.digitaloceanspaces.com','nyc3.cdn.digitaloceanspaces.com'),
     date: new Date(item.find('LastModified').text()).toLocaleString(),
     size: size,
     sizeStr: size.toBytes()
