@@ -49,12 +49,14 @@ var File = function (path, item, bucketUrl) {
   var file = item.find('Key').text().replace(/\/$/, '')
   var name = file.substring(path.length)
   var size = parseInt(item.find('Size').text())
+  var urlencoded = bucketUrl + encodeURIComponent(file).replace(/%2F/g, '/')
+  var cdnurl = urlencoded.replace('nyc3.digitaloceanspaces.com','nyc3.cdn.digitaloceanspaces.com')
   return {
     icon: 'ion-document-text',
     name: name,
     title: name.replace(/^The\s*/i, ''),
     //href: bucketUrl + encodeURIComponent(file).replace(/%2F/g, '/'),
-    href: bucketUrl + encodeURIComponent(file).replace(/%2F/g, '/').replace('nyc3.digitaloceanspaces.com','nyc3.cdn.digitaloceanspaces.com'),
+    href: cdnurl,
     date: new Date(item.find('LastModified').text()).toLocaleString(),
     size: size,
     sizeStr: size.toBytes()
